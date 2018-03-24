@@ -66,7 +66,7 @@
 		map.on('complete', function(){
 			map.plugin(["AMap.ToolBar", "AMap.OverView", "AMap.Scale"], function(){
 				map.addControl(new AMap.ToolBar);
-			map.addControl(new AMap.OverView({isOpen: true}));
+			map.addControl(new AMap.OverView);
 			map.addControl(new AMap.Scale);
 			});	
 		})
