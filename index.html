@@ -1,77 +1,95 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="zh-CN">
+
 <head>
-	<meta charset="utf-8">
-	<meta name="keywords" content="高德地图,DIY地图,高德地图生成器">
-	<meta name="description" content="高德地图，DIY地图，自己制作地图，生成自己的高德地图">
-	<title>高德地图 - DIY我的地图</title>
-	<style>
-		body { margin: 0; font: 13px/1.5 "Microsoft YaHei", "Helvetica Neue", "Sans-Serif"; min-height: 960px; min-width: 600px; }
-		.my-map { margin: 0 auto; width: 600px; height: 600px; }
-		.amap-container{height: 100%;}
-	</style>
+    <!-- 原始地址：//webapi.amap.com/ui/1.0/ui/misc/PathSimplifier/examples/simple-demo.html -->
+    <base href="//webapi.amap.com/ui/1.0/ui/misc/PathSimplifier/examples/" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>简单路径</title>
+    <style>
+    html,
+    body,
+    #container {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+    }
+    </style>
 </head>
+
 <body>
-	<div id="wrap" class="my-map">
-		<div id="mapContainer"></div>
-	</div>
-	<script src="//webapi.amap.com/maps?v=1.3&key=8325164e247e15eea68b59e89200988b"></script>
-	<script>
-	!function(){
-		var infoWindow, map, level = 14,
-			center = {lng: 108.073746, lat: 34.291115},
-			features = [{type: "Polyline", name: "杨凌马拉松赛", desc: "2018赛事", strokeWeight: 5, strokeColor: "#F0202F", strokeOpacity: 1, lnglat: [{lng: 108.074519, lat: 34.277357}, {lng: 108.074605, lat: 34.267569}, {lng: 108.075206, lat: 34.262604}, {lng: 108.075549, lat: 34.243874}, {lng: 108.113915, lat: 34.243733}, {lng: 108.114859, lat: 34.257922}, {lng: 108.095204, lat: 34.258915}, {lng: 108.094775, lat: 34.279768}, {lng: 108.094174, lat: 34.291257}, {lng: 108.093488, lat: 34.300688}, {lng: 108.073746, lat: 34.299624}, {lng: 108.074004, lat: 34.29147}, {lng: 108.073746, lat: 34.291115}]}];
+    <div id="container"></div>
+    <script type="text/javascript" src='//webapi.amap.com/maps?v=1.4.5&key=您申请的key值'></script>
+    <!-- UI组件库 1.0 -->
+    <script src="//webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
+    <script type="text/javascript">
+    //创建地图
+    var map = new AMap.Map('container', {
+        zoom: 4
+    });
 
-		function loadFeatures(){
-			for(var feature, data, i = 0, len = features.length, j, jl, path; i < len; i++){
-				data = features[i];
-				switch(data.type){
-					case "Marker":
-						feature = new AMap.Marker({ map: map, position: new AMap.LngLat(data.lnglat.lng, data.lnglat.lat),
-							zIndex: 3, extData: data, offset: new AMap.Pixel(data.offset.x, data.offset.y), title: data.name,
-							content: '<div class="icon icon-' + data.icon + ' icon-'+ data.icon +'-' + data.color +'"></div>' });
-						break;
-					case "Polyline":
-						for(j = 0, jl = data.lnglat.length, path = []; j < jl; j++){
-							path.push(new AMap.LngLat(data.lnglat[j].lng, data.lnglat[j].lat));
-						}
-						feature = new AMap.Polyline({ map: map, path: path, extData: data, zIndex: 2,
-							strokeWeight: data.strokeWeight, strokeColor: data.strokeColor, strokeOpacity: data.strokeOpacity });
-						break;
-					case "Polygon":
-						for(j = 0, jl = data.lnglat.length, path = []; j < jl; j++){
-							path.push(new AMap.LngLat(data.lnglat[j].lng, data.lnglat[j].lat));
-						}
-						feature = new AMap.Polygon({ map: map, path: path, extData: data, zIndex: 1,
-							strokeWeight: data.strokeWeight, strokeColor: data.strokeColor, strokeOpacity: data.strokeOpacity,
-							fillColor: data.fillColor, fillOpacity: data.fillOpacity });
-						break;
-					default: feature = null;
-				}
-				if(feature){ AMap.event.addListener(feature, "click", mapFeatureClick); }
-			}
-		}
+    AMapUI.load(['ui/misc/PathSimplifier', 'lib/$'], function(PathSimplifier, $) {
 
-		function mapFeatureClick(e){
-			if(!infoWindow){ infoWindow = new AMap.InfoWindow({autoMove: true}); }
-			var extData = e.target.getExtData();
-			infoWindow.setContent("<h5>" + extData.name + "</h5><div>" + extData.desc + "</div>");
-			infoWindow.open(map, e.lnglat);
-		}
+        if (!PathSimplifier.supportCanvas) {
+            alert('当前环境不支持 Canvas！');
+            return;
+        }
 
-		map = new AMap.Map("mapContainer", {center: new AMap.LngLat(center.lng, center.lat), level: level});
-		new AMap.TileLayer.RoadNet({map: map, zIndex: 2});
-		loadFeatures();
+        var pathSimplifierIns = new PathSimplifier({
+            zIndex: 100,
+            //autoSetFitView:false,
+            map: map, //所属的地图实例
 
-		map.on('complete', function(){
-			map.plugin(["AMap.ToolBar", "AMap.OverView", "AMap.Scale"], function(){
-				map.addControl(new AMap.ToolBar({ruler: false, direction: false, locate: false}));
-			map.addControl(new AMap.OverView({isOpen: true}));
-			map.addControl(new AMap.Scale);
-			});	
-		})
-		
-	}();
-	</script>
+            getPath: function(pathData, pathIndex) {
+
+                return pathData.path;
+            },
+            getHoverTitle: function(pathData, pathIndex, pointIndex) {
+
+                if (pointIndex >= 0) {
+                    //point 
+                    return pathData.name + '，点：' + pointIndex + '/' + pathData.path.length;
+                }
+
+                return pathData.name + '，点数量' + pathData.path.length;
+            },
+            renderOptions: {
+
+                renderAllPointsIfNumberBelow: 100 //绘制路线节点，如不需要可设置为-1
+            }
+        });
+
+        window.pathSimplifierIns = pathSimplifierIns;
+
+        //设置数据
+        pathSimplifierIns.setData([{
+            name: '路线0',
+            path: [
+                [116.405289, 39.904987],
+                [113.964458, 40.54664],
+                [111.47836, 41.135964],
+                [108.949297, 41.670904],
+                [106.380111, 42.149509],
+                [103.774185, 42.56996],
+                [101.135432, 42.930601],
+                [98.46826, 43.229964],
+                [95.777529, 43.466798],
+                [93.068486, 43.64009],
+                [90.34669, 43.749086],
+                [87.61792, 43.793308]
+            ]
+        }]);
+
+        //对第一条线路（即索引 0）创建一个巡航器
+        var navg1 = pathSimplifierIns.createPathNavigator(0, {
+            loop: true, //循环播放
+            speed: 1000000 //巡航速度，单位千米/小时
+        });
+
+        navg1.start();
+    });
+    </script>
 </body>
+
 </html>
