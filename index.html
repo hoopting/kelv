@@ -15,18 +15,23 @@
         height: 100%;
         margin: 0px;
     }
+    #header{  width: 100%;
+        height: 100%;
+        margin: 0px;
+        background:yellow;
+    float:top;}
     </style>
 </head>
 
 <body>
-    <div id="container"></div>
-    
-    
+    <div id="header">欢迎参加2018年杨凌马拉松！<div id="container"></div></div>
     <script type="text/javascript" src='//webapi.amap.com/maps?v=1.4.5&key=0e047f1fe77964016d6b86acd6cf12f3'></script>
     <!-- UI组件库 1.0 -->
     <script src="//webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
+    
     <script type="text/javascript">
     //创建地图
+     
     var map = new AMap.Map('container', {
         zoom: 4
     });
@@ -37,6 +42,7 @@
             alert('当前环境不支持 Canvas！');
             return;
         }
+        
 
         var pathSimplifierIns = new PathSimplifier({
             zIndex: 100,
@@ -47,7 +53,9 @@
 
                 return pathData.path;
             },
-            getHoverTitle: function(pathData, pathIndex, pointIndex) {
+            getHoverTitle: function(pathData, pathIndex, pointIndex) 
+          
+            {
 
                 if (pointIndex >= 0) {
                     //point 
@@ -61,6 +69,7 @@
                 renderAllPointsIfNumberBelow: 100 //绘制路线节点，如不需要可设置为-1
             }
         });
+        
 
         window.pathSimplifierIns = pathSimplifierIns;
 
@@ -132,3 +141,4 @@
 </body>
 
 </html>
+
