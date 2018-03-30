@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="zh-CN">
 
@@ -10,29 +11,39 @@
     <style>
     html,
     body,
+  
     #container {
         width: 100%;
-        height: 100%;
+        height:100%;
         margin: 0px;
+        float:bottom;
+       
+
     }
-    #header{  width: 100%;
-        height: 100%;
-        margin: 0px;
-        background:yellow;
-    float:top;}
+   
+         #lead{
+        width: 100%;
+        height:8%;
+        position: relative;
+        border: 1px solid red;
+        float:top;
+    } 
     </style>
 </head>
 
 <body>
-    <div><link rel='prev' title='百度首页' href='https://baidu.com' /></div>
-    <div id="container"></div></div>
+ <div id="lead">
+<a name="baidu" href="https://hao.360.cn/?safe">百度</a>
+      </div>
+    <div id="container">
+     
+    </div>
+ 
     <script type="text/javascript" src='//webapi.amap.com/maps?v=1.4.5&key=0e047f1fe77964016d6b86acd6cf12f3'></script>
     <!-- UI组件库 1.0 -->
     <script src="//webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
-    
     <script type="text/javascript">
     //创建地图
-     
     var map = new AMap.Map('container', {
         zoom: 4
     });
@@ -43,7 +54,6 @@
             alert('当前环境不支持 Canvas！');
             return;
         }
-        
 
         var pathSimplifierIns = new PathSimplifier({
             zIndex: 100,
@@ -54,9 +64,7 @@
 
                 return pathData.path;
             },
-            getHoverTitle: function(pathData, pathIndex, pointIndex) 
-          
-            {
+            getHoverTitle: function(pathData, pathIndex, pointIndex) {
 
                 if (pointIndex >= 0) {
                     //point 
@@ -70,7 +78,6 @@
                 renderAllPointsIfNumberBelow: 100 //绘制路线节点，如不需要可设置为-1
             }
         });
-        
 
         window.pathSimplifierIns = pathSimplifierIns;
 
@@ -142,4 +149,3 @@
 </body>
 
 </html>
-
