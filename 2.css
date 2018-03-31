@@ -1,0 +1,245 @@
+body{
+    text-align: center;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+ul{
+    list-style: none;
+}
+/*页眉*/
+.header{
+    display: none;
+}
+.header-mobile{
+    background:#323A45;
+    border-bottom:2px solid #00B895;
+}
+.logo-mobile{
+    text-align:center;
+    padding:5px 0;
+}
+.drp-dwn{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.drp-dwn select {
+    padding:5px;
+    outline: none;
+    display: block !important;
+    width: 100%;
+    color:#FFF;
+    text-transform:uppercase;
+    border:1px solid rgba(88, 88, 88, 0);
+    background:#00B895;
+    cursor: pointer;
+}
+.slides img{
+    display:block;
+    max-width:100%;
+    width:100%;
+}
+/*主体*/
+.section{
+    /*background:white;*/
+    /*padding: 20px 30px;*/
+    position:relative;
+    width: 750px;
+    text-align: center;
+    margin: 0 auto;
+    background-: url("img/17.jpg") no-repeat ;
+    /*border: 1px solid red;*/
+}
+/*顶部*/
+.top{
+    position:relative;
+    width: 700px;
+    height: 60px;
+    /*text-align: center;*/
+    margin: 0 auto;
+    margin-top: 20px;
+    /*border: 1px solid #7dbc3f;*/
+}
+.l{
+    width: 220px;
+    position:relative;
+    float:left;
+    top: 20px;
+}
+.top>h1{
+    position:relative;
+    width: 180px;
+    height: 40px;
+    float:left;
+    font-family: "楷体";
+    font-size: 38px;
+    color:#313944;
+    left: 38px;
+}
+.r{
+    position:relative;
+    float:right;
+    width:220px;
+    top: 20px;
+}
+/*身体*/
+.bodys{
+    position:relative;
+    width: 750px;
+    text-align: center;
+    margin: 0 auto;
+    /*border: 1px solid #2080bd;*/
+    /*background-image: url("img/17.jpg");*/
+}
+.title-list-table{
+    border: 2px;
+    width: 600px;
+    height: 100px;
+    margin: 0 auto;
+    border: 1px solid #00B794;
+}
+.title-list-table td{
+    width:100px;
+    height: 50px;
+    align:center;
+    border: 1px solid #00B794;
+}
+.title-list-table img{
+    margin-top:5px;
+    margin-left: 20px;
+    float: left;
+}
+.title-list-table a{
+    font-family: "幼圆";
+    font-size: 25px;
+    float: right;
+    margin-right:90px;
+    margin-top: 10px;
+}
+
+.left{
+    display: none;
+}
+.right{
+    display: none;
+}
+.click{
+   background-color: #303843;
+    color:white;
+    cursor:pointer;
+}
+.hover{
+    color:#00B794;
+    text-decoration:underline;
+    cursor:pointer;
+}
+.title-content{
+    position:relative;
+    width: 580px;
+    padding:5px 10px;
+    margin: 0 auto;
+    margin-top: 50px;
+    border:1px solid #00B794;
+}
+.bl{
+    text-align: center;
+}
+.hr1{
+    margin: 10px;
+    text-align: center;
+    width:97%;
+    border-top: 1px dashed #00B794;
+}
+.jj{
+    text-align: center;
+    color: #00B895;
+    font-size: 20px;
+    margin: 5px 10px;
+}
+.ct{
+    text-align: justify;
+    padding: 5px 10px;
+    line-height: 1.5;
+    text-indent:2em;
+}
+.bt{
+    font-size: 30px;
+    font-family: "华文隶书";
+    height: 25px;
+    width:580px;
+    text-align: center;
+    padding-top:10px;
+    color:#00B794;
+}
+.table{
+    text-align: center;
+    background-image: url("img/14.jpg");
+    width:380px;
+    height:260px;
+    margin: 0 auto;
+}
+.table2{
+    background-image: url("img/15.png");
+    width:380px;
+    height:150px;
+    color:#FEFEFE;
+    margin: 0 auto;
+}
+/*页脚*/
+.footer{
+   display: none;
+}
+/*页尾*/
+.tail{
+    background:#313944;
+    position:relative;
+    width: 768px;
+    height: 55px;
+    text-align: center;
+    margin: 0 auto;
+}
+.tail p {
+    color: #FEFEFE;
+    font-family: "宋体";
+    font-size: 20px;
+    font-style: normal;
+    padding-top: 16px;
+}
+/*returnTop*/
+p#back-to-top{
+    position:fixed;
+    display:none;
+    bottom:10px;
+    right:8px;
+    /*background:#adadad;*/
+}
+p#back-to-top a{
+    text-align:center;
+    text-decoration:none;
+    color:#6C6C6D;
+    display:block;
+    width:30px;
+    /*使用CSS3中的transition属性给跳转链接中的文字添加渐变效果*/
+    -moz-transition:color 1s;
+    -webkit-transition:color 1s;
+    -o-transition:color 1s;
+}
+p#back-to-top a:hover{
+    color:#00B794;
+}
+p#back-to-top a span{
+    background:transparent url("img/13.PNG") no-repeat;
+    border-radius:6px;
+    display:block;
+    height:30px;
+    width:30px;
+    margin-bottom:5px;
+    /*使用CSS3中的transition属性给<span>标签背景颜色添加渐变效果*/
+    -moz-transition:background 1s;
+    -webkit-transition:background 1s;
+    -o-transition:background 1s;
+}
+#back-to-top a:hover span{
+    background:transparent url("img/13.PNG") no-repeat;
+}
