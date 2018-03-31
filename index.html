@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="zh-CN">
 
@@ -18,20 +17,29 @@
         margin: 0px;
         float:bottom;
        
-
     }
+             #lead{
+        width: 100%;
+        height:20px;
+        position: relative;
+ 
+        float:top;
+        font-size:20px;
+      
+	
+    } 
    
-
     </style>
 </head>
 
 <body>
 <div id="lead">
-<a name="homepage" href="http://2018ylmarathon.flzhan.com/index.html?949209">首页</a>    </div>
-   <div id="lead"> <a  href="guju.jpg">地址</a>    </div>
-     <div id="lead"> <a  href="http://2018ylmarathon.flzhan.com/index.html?949209">规划图</a>    </div>
-   <div id="lead"> <a href="http://uri.amap.com/navigation?from=&to=108.095243,34.262257,起点&mode=car&policy=0&src=mypage&coordinate=wgs84&callnative=0">导航</a>    </div>
-   <div id="lead"> <a href="http://2018ylmarathon.flzhan.com/index.html?949209">注意事项</a>    </div>
+<a name="homepage" href="http://2018ylmarathon.flzhan.com/index.html?949209">首页</a>    
+    <a  href="guju.jpg">地址</a>   
+     <a  href="http://www.baidu.com">规划图</a>   
+    <a href="http://uri.amap.com/navigation?from=&to=108.095243,34.262257,起点&mode=car&policy=0&src=mypage&coordinate=wgs84&callnative=0">导航</a>   
+  <a href="http://hupu.nba.com">注意事项</a>   
+  </div>
      
    
     <div id="container">
@@ -46,40 +54,30 @@
     var map = new AMap.Map('container', {
         zoom: 4
     });
-
     AMapUI.load(['ui/misc/PathSimplifier', 'lib/$'], function(PathSimplifier, $) {
-
         if (!PathSimplifier.supportCanvas) {
             alert('当前环境不支持 Canvas！');
             return;
         }
-
         var pathSimplifierIns = new PathSimplifier({
             zIndex: 100,
             //autoSetFitView:false,
             map: map, //所属的地图实例
-
             getPath: function(pathData, pathIndex) {
-
                 return pathData.path;
             },
             getHoverTitle: function(pathData, pathIndex, pointIndex) {
-
                 if (pointIndex >= 0) {
                     //point 
                     return pathData.name + '，点：' + pointIndex + '/' + pathData.path.length;
                 }
-
                 return pathData.name + '，点数量' + pathData.path.length;
             },
             renderOptions: {
-
                 renderAllPointsIfNumberBelow: 100 //绘制路线节点，如不需要可设置为-1
             }
         });
-
         window.pathSimplifierIns = pathSimplifierIns;
-
         //设置数据
         pathSimplifierIns.setData([{
             name: '路线0',
@@ -135,13 +133,11 @@
 [108.095158,34.262273]//终点
             ]
         }]);
-
         //对第一条线路（即索引 0）创建一个巡航器
         var navg1 = pathSimplifierIns.createPathNavigator(0, {
             loop: true, //循环播放
             speed: 5000 //巡航速度，单位千米/小时
         });
-
         navg1.start();
     });
     </script>
