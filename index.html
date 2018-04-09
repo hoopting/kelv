@@ -1,159 +1,34 @@
-
 <!doctype html>
-<html lang="zh-CN">
-
+<html>
 <head>
-    <!-- 原始地址：//webapi.amap.com/ui/1.0/ui/misc/PathSimplifier/examples/simple-demo.html -->
-    <base href="//webapi.amap.com/ui/1.0/ui/misc/PathSimplifier/examples/" />
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
-    <title>2018杨凌马拉松全程路线图</title>
-    <style>
-    html,
-    body,
-  
-    #container {
-        width: 100%;
-        height:100%;
-        margin: 0px;
-        float:bottom;
-       
-
-    }
-   
-         #lead{
-        width: 100%;
-        height:20px;
-        position: relative;
-        border: 1px solid red;
-        float:top;
-        font-size:20px;
-        display:table-cell;
-		align: middle;
-    } 
-    </style>
+    <title>图片图层</title>
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+    <script src="http://webapi.amap.com/maps?v=1.4.5&key=您申请的key值"></script>
+    <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
 </head>
-
 <body>
-<div id="lead">
-<a name="homepage" href="http://2018ylmarathon.flzhan.com/index.html?949209">首页</a>
-    <a name="homepage" href="http://2018ylmarathon.flzhan.com/index.html?949209">地址</a>
-      <a name="homepage" href="http://2018ylmarathon.flzhan.com/index.html?949209">规划图</a>
-    <a name="homepage" href="http://2018ylmarathon.flzhan.com/index.html?949209">导航</a>
-    <a name="homepage" href="http://2018ylmarathon.flzhan.com/index.html?949209">注意事项</a>
-     
-    </div>
-    <div id="container">
-     
-    </div>
- 
-    <script type="text/javascript" src='//webapi.amap.com/maps?v=1.4.5&key=0e047f1fe77964016d6b86acd6cf12f3'></script>
-    <!-- UI组件库 1.0 -->
-    <script src="//webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
-    <script type="text/javascript">
-    //创建地图
+<div id="container"></div>
+<script>
+    var imageLayer = new AMap.ImageLayer({
+        url: 'http://amappc.cn-hangzhou.oss-pub.aliyun-inc.com/lbs/static/img/dongwuyuan.jpg',
+        bounds: new AMap.Bounds(
+                [116.327911, 39.939229],
+                [116.342659, 39.946275]
+        ),
+        zooms: [15, 18]
+    });
     var map = new AMap.Map('container', {
-        zoom: 4
+        resizeEnable: true,
+        center: [116.33719, 39.942384],
+        zoom: 15,
+        layers: [
+            new AMap.TileLayer(),
+            imageLayer
+        ]
     });
-
-    AMapUI.load(['ui/misc/PathSimplifier', 'lib/$'], function(PathSimplifier, $) {
-
-        if (!PathSimplifier.supportCanvas) {
-            alert('当前环境不支持 Canvas！');
-            return;
-        }
-
-        var pathSimplifierIns = new PathSimplifier({
-            zIndex: 100,
-            //autoSetFitView:false,
-            map: map, //所属的地图实例
-
-            getPath: function(pathData, pathIndex) {
-
-                return pathData.path;
-            },
-            getHoverTitle: function(pathData, pathIndex, pointIndex) {
-
-                if (pointIndex >= 0) {
-                    //point 
-                    return pathData.name + '，点：' + pointIndex + '/' + pathData.path.length;
-                }
-
-                return pathData.name + '，点数量' + pathData.path.length;
-            },
-            renderOptions: {
-
-                renderAllPointsIfNumberBelow: 100 //绘制路线节点，如不需要可设置为-1
-            }
-        });
-
-        window.pathSimplifierIns = pathSimplifierIns;
-
-        //设置数据
-        pathSimplifierIns.setData([{
-            name: '路线0',
-            path: [
-                [108.095158,34.262273],
-[108.10329,34.262308],//东新路
-[108.103494,34.258921],
-[108.109883,34.258735],
-[108.114668,34.258167],
-[108.113316,34.228793],
-[108.106707,34.231685],
-[108.089627,34.236386],
-[108.083361,34.236457],
-[108.054822,34.234222],
-[108.054785,34.241007],//滨河西路折点
-[108.075749,34.241113],
-[108.083538,34.240847],
-[108.083538,34.240847],
-[108.096391,34.239109],//新桥路折点
-[108.096198,34.244253],//城南路折点
-[108.075701,34.244226],//新天地十字路口折点
-[108.074971,34.263753],
-[108.073818,34.263758],
-[108.073024,34.26347],
-[108.073018,34.26272],
-[108.063518,34.26253],
-[108.063561,34.263647],
-[108.062939,34.263727],
-[108.063057,34.262849],
-[108.058862,34.263026],
-[108.050686,34.262929],
-[108.050601,34.298779],
-[108.025838,34.298017],
-[108.020163,34.298407],
-[108.020174,34.298496],//创新园西部转折点
-[108.021241,34.298292],
-[108.025844,34.298021],
-[108.031192,34.29831],
-[108.043026,34.298664],//创新圆门口
-[108.05059,34.298748],
-[108.057918,34.298549],
-[108.061748,34.298682],//上毕路
-[108.066265,34.298903],
-[108.078689,34.299852],//崔西沟
-[108.093849,34.300401],//新桥路
-[108.107903,34.300224],//转折点1
-[108.10844,34.299958],//转折点2
-[108.108805,34.299302],//转折点3
-[108.110071,34.264427],//渭惠路
-[108.107721,34.265323],
-[108.103151,34.265412],//东新路
-[108.103333,34.262326],
-[108.095158,34.262273]//终点
-            ]
-        }]);
-
-        //对第一条线路（即索引 0）创建一个巡航器
-        var navg1 = pathSimplifierIns.createPathNavigator(0, {
-            loop: true, //循环播放
-            speed: 5000 //巡航速度，单位千米/小时
-        });
-
-        navg1.start();
-    });
-    </script>
+</script>
 </body>
-
 </html>
