@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>图片图层</title>
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+    <script src="http://webapi.amap.com/maps?v=1.4.5&key=您申请的key值"></script>
+    <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+</head>
+<body>
+<div id="container"></div>
+<script>
+    var imageLayer = new AMap.ImageLayer({
+        url: 'http://amappc.cn-hangzhou.oss-pub.aliyun-inc.com/lbs/static/img/dongwuyuan.jpg',
+        bounds: new AMap.Bounds(
+                [108.085882,34.260845],
+                [108.096279,34.264028]
+        ),
+        zooms: [15, 18]
+    });
+    var map = new AMap.Map('container', {
+        resizeEnable: true,
+        center: [108.091644,34.262193],
+        zoom: 15,
+        layers: [
+            new AMap.TileLayer(),
+            imageLayer
+        ]
+    });
+</script>
+</body>
+</html>
